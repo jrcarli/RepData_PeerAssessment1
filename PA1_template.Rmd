@@ -8,11 +8,20 @@ output:
 
 ## Loading and preprocessing the data
 
-
+```{r}
+library(lubridate)
+df <- read.csv("activity.csv")
+df$dt <- ymd(df$date)
+complete_df <- subset(df, !is.na(steps))
+```
 
 ## What is mean total number of steps taken per day?
 
-
+```{r}
+total_steps <- sum(complete_df$steps)
+total_days <- as.numeric(difftime(max(complete_df$dt),min(df$dt),units="days"))
+total_steps/total_days
+```
 
 ## What is the average daily activity pattern?
 
@@ -20,6 +29,9 @@ output:
 
 ## Imputing missing values
 
+```{r}
+summary(df)
+```
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
