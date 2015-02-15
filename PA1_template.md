@@ -1,9 +1,4 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 
 ## Loading and preprocessing the data
@@ -22,6 +17,26 @@ Note: NA values will be discarded.
 
 ```r
 library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+## 
+## The following objects are masked from 'package:lubridate':
+## 
+##     intersect, setdiff, union
+## 
+## The following object is masked from 'package:stats':
+## 
+##     filter
+## 
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
 by_date <- group_by(df, date)
 daily_steps <- summarize(by_date, steps=sum(steps, na.rm=TRUE))
 mean_steps_na_rm <- mean(daily_steps$steps)
@@ -58,7 +73,7 @@ with(avg_steps, {
 })
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
 
 #### The 5-minute interval with the highest daily average step count
 
@@ -143,7 +158,7 @@ total_steps <- summarize(by_date, steps=sum(steps))
 hist(total_steps$steps,main="Histogram of Daily Steps",xlab="Steps")
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-9-1.png) 
 
 #### Calculate the mean and median of total steps per day
 
@@ -216,5 +231,5 @@ xyplot(wday_avg_steps$steps~wday_avg_steps$interval|wday_avg_steps$wday,
        layout=c(1,2))
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-13-1.png) 
     
